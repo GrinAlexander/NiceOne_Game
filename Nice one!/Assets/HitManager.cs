@@ -4,34 +4,29 @@ using UnityEngine;
 
 public class HitManager : MonoBehaviour
 {
-    public int Force = 50;
+    [SerializeField]
+    public float Force = 1f;
+    Rigidbody rb;
     public int count;
     GameObject net;
-    BoxCollider2D netCollider;
+    BoxCollider netCollider;
+
+    bool bKicked = false;
     // Start is called before the first frame update
     void Start()
     {
+        rb = GetComponent<Rigidbody>();
         count = 0;
         net = GameObject.FindGameObjectWithTag("Net");
-        netCollider = net.GetComponent(typeof (BoxCollider2D)) as BoxCollider2D;
+        netCollider = net.GetComponent(typeof (BoxCollider)) as BoxCollider;
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    void OnMouseDown()
-    {
-        Rigidbody rigidbody = gameObject.GetComponent(typeof (Rigidbody)) as Rigidbody;
-        rigidbody.AddForce(transform.forward * Force);
-        rigidbody.useGravity = true;
-    }
-    void OnTriggerEnter(Collider col)
-    {
-
-    }
+     void Update () 
+     {
+             
+     }
+    
     void OnTriggerExit(Collider col)
     {
         if (col.gameObject.tag == "Net")

@@ -45,6 +45,7 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>     <Compile Include="Assets\HitManager.cs" />
+     <Compile Include="Assets\Scripts\Bezier.cs" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>C:/Users/andro/Documents/GitHub/NiceOne_Game/Nice one!/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>
