@@ -7,18 +7,25 @@ public class Bezier : MonoBehaviour
     public LineRenderer lineRenderer;
     public Transform p0, p1, p2;
     private int numPoints = 50;
-    private Vector3[] positions = new Vector3[50];
+    [SerializeField]
+    public static Vector3[] positions = new Vector3[50];
     // Start is called before the first frame update
     void Start()
     {
-        lineRenderer.positionCount = numPoints;
-        
+        lineRenderer.positionCount = numPoints;  
     }
 
     // Update is called once per frame
     void Update()
     {
         DrawQuadraticCurve();
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            foreach (var item in positions)
+            {
+                Debug.LogWarning(item);
+            }
+        }
     }
 
     private void DrawLinearCurve()
@@ -55,5 +62,24 @@ public class Bezier : MonoBehaviour
         p += 2 * u * t * p1;
         p += tt * p2;
         return p;
+    }
+
+    void OnMouseDown()
+    {
+        foreach (var item in positions)
+        {
+            Debug.Log(item);
+        }
+    }
+
+    public Vector3 GetPosition(int index)
+    {
+
+        return lineRenderer.GetPosition(index);
+    }
+
+    public Vector3[] GetPositions()
+    {
+        return positions;
     }
 }
