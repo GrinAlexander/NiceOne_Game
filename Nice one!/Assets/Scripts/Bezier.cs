@@ -19,23 +19,6 @@ public class Bezier : MonoBehaviour
     void Update()
     {
         DrawQuadraticCurve();
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            foreach (var item in positions)
-            {
-                Debug.LogWarning(item);
-            }
-        }
-    }
-
-    private void DrawLinearCurve()
-    {
-        for (int i = 1; i < numPoints + 1; i++)
-        {
-            float t = i / (float)numPoints;
-            positions[i - 1] = CalcLinearBezierPoint(t, p0.position, p1.position);
-        }
-        lineRenderer.SetPositions(positions);
     }
 
     private void DrawQuadraticCurve()
@@ -48,11 +31,6 @@ public class Bezier : MonoBehaviour
         lineRenderer.SetPositions(positions);
     }
 
-    private Vector3 CalcLinearBezierPoint(float t, Vector3 p0, Vector3 p1)
-    {
-        return p0 + t * (p1 - p0);
-    }
-
     private Vector3 CalcQuadraticBezierPoint(float t, Vector3 p0, Vector3 p1, Vector3 p2)
     {
         float u = 1 - t;
@@ -62,24 +40,5 @@ public class Bezier : MonoBehaviour
         p += 2 * u * t * p1;
         p += tt * p2;
         return p;
-    }
-
-    void OnMouseDown()
-    {
-        foreach (var item in positions)
-        {
-            Debug.Log(item);
-        }
-    }
-
-    public Vector3 GetPosition(int index)
-    {
-
-        return lineRenderer.GetPosition(index);
-    }
-
-    public Vector3[] GetPositions()
-    {
-        return positions;
     }
 }
